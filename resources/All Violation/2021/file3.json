@@ -1,0 +1,26 @@
+[
+  {
+    "idIntruder" : "10",
+    "firstName" : "firstName10",
+    "lastName" : "lastName10",
+    "dateViolation" : "2021-01-10 15:39:03",
+    "typeViolation" : "OVER_SPEED",
+    "costFine" : 625.0
+  },
+  {
+    "idIntruder" : "14",
+    "firstName" : "firstName14",
+    "lastName" : "lastName14",
+    "dateViolation" : "2021-10-30 14:40:00",
+    "typeViolation" : "DRUNK_DRIVING",
+    "costFine" : 15000.0
+  },
+  {
+    "idIntruder" : "16",
+    "firstName" : "firstName16",
+    "lastName" : "lastName16",
+    "dateViolation" : "2021-12-05 10:52:00",
+    "typeViolation" : "NOT_LICENSE",
+    "costFine" : 1200.65
+  }
+]
