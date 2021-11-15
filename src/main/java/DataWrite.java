@@ -2,6 +2,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class DataWrite {
@@ -15,12 +17,7 @@ public class DataWrite {
 
     public static Map<String, Double> sortMap(){
         List<Map.Entry<String, Double>> list = new LinkedList<>(statistics.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
-            @Override
-            public int compare(Map.Entry<String, Double> a, Map.Entry<String, Double> b) {
-                return b.getValue().compareTo(a.getValue());
-            }
-        });
+        list.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
         Map<String, Double> sortedMap = new LinkedHashMap<>();
         for (Map.Entry<String, Double> entry : list){
@@ -31,10 +28,16 @@ public class DataWrite {
     }
 
     public static void writeStatisticsJson() throws IOException {
-        String allSum = "resources\\Statistics\\allSum.json";
-        String allIntruder = "resources\\Statistics\\allIntruder.json";
-        File file = new File(allSum);
-        File file1 = new File(allIntruder);
+        String path = "resources\\Statistics";
+        String filenameAllSum = "allSum.json";
+        String filenameAllIntruder = "allIntruder.json";
+
+        if (!(Files.exists(Paths.get(path)))){
+            Files.createDirectories(Paths.get(path));
+        }
+
+        File file = new File(path + "\\" + filenameAllSum);
+        File file1 = new File(path + "\\" + filenameAllIntruder);
         new ObjectMapper().writeValue(file, sortMap());
         new ObjectMapper().writeValue(file1, IntruderStat.intruderStatSet);
     }
